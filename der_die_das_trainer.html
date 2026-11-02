@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Der, die, das — немецкий тренажёр</title>
+<style>
+:root{--blue:#3d79f6;--blue2:#dff0ff;--pink:#ef5379;--pink2:#ffe1e9;--green:#329b59;--green2:#e3f8c9;--ink:#17233d;--muted:#66718a;--paper:#fff;--bg:#f5f7fc;--yellow:#ffd45e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+header{padding:34px 20px 26px;background:linear-gradient(125deg,#cce8ff,#ffdce6 55%,#e4f8c9);text-align:center}
+header .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#495779}
+h1{font-size:clamp(2rem,6vw,3.8rem);line-height:1.05;margin:8px 0}header p{max-width:720px;margin:12px auto 0;color:#3e4b66}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px max(12px,calc((100vw - 1100px)/2));background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid #e7eaf2}
+nav button{border:0;border-radius:999px;padding:10px 15px;white-space:nowrap;font-weight:750;background:#eef1f8;color:#4c5871;cursor:pointer}
+nav button.active{background:var(--ink);color:#fff}
+main{max-width:1100px;margin:24px auto;padding:0 16px 50px}.page{display:none}.page.active{display:block}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:26px 0 14px}.section-title h2{margin:0;font-size:1.65rem}.section-title p{margin:0;color:var(--muted);font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--paper);border-radius:20px;padding:19px;box-shadow:0 7px 24px #1e2a4510;border:1px solid #e9edf5}
+.card h3{margin:0 0 8px;font-size:1.1rem}.card p{margin:6px 0}.card ul{margin:8px 0 0;padding-left:19px}
+.gender{border-top:7px solid}.masc{border-color:var(--blue);background:linear-gradient(180deg,var(--blue2),#fff 65%)}.fem{border-color:var(--pink);background:linear-gradient(180deg,var(--pink2),#fff 65%)}.neut{border-color:var(--green);background:linear-gradient(180deg,var(--green2),#fff 65%)}
+.pill{display:inline-block;padding:4px 9px;border-radius:999px;font-size:.78rem;font-weight:850;background:#fff;margin:2px 4px 2px 0}
+.example{padding:9px 11px;border-radius:12px;background:#ffffffc9;margin-top:8px;font-weight:650}.translation{display:block;color:var(--muted);font-size:.9rem;font-weight:500}
+strong.blue{color:var(--blue)}strong.pink{color:var(--pink)}strong.green{color:var(--green)}
+.rule{padding:14px 16px;background:#fff;border-radius:15px;border-left:5px solid var(--yellow);margin:10px 0}
+.rule b{display:block;margin-bottom:3px}
+.small{font-size:.9rem;color:var(--muted)}.tag{font-size:.75rem;font-weight:800;background:#edf0f7;border-radius:7px;padding:3px 7px}
+button,.btn{font:inherit}.primary{border:0;background:var(--ink);color:white;border-radius:12px;padding:11px 16px;font-weight:800;cursor:pointer}.secondary{border:1px solid #dfe4ef;background:#fff;color:var(--ink);border-radius:12px;padding:10px 14px;font-weight:750;cursor:pointer}.primary:hover,.secondary:hover,nav button:hover{transform:translateY(-1px)}
+.quizbox{background:#fff;border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 9px 30px #1e2a4510;border:1px solid #e9edf5}
+.progress{height:8px;background:#edf0f6;border-radius:20px;overflow:hidden;margin:14px 0 22px}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--pink),var(--green));width:0;transition:width .3s}
+.question{font-size:clamp(1.3rem,4vw,2rem);font-weight:850;margin:12px 0 18px}.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px}.answer{padding:13px;border:2px solid #e6eaf2;border-radius:13px;background:white;font-weight:800;cursor:pointer}.answer:hover{border-color:#aab6d0}.answer.correct{background:#e2f8e8;border-color:#43ae68}.answer.wrong{background:#ffe7eb;border-color:#ed6b86}
+.feedback{min-height:28px;margin:14px 0;font-weight:750}.stats{display:flex;gap:10px;flex-wrap:wrap}.stat{padding:10px 13px;background:#f2f5fb;border-radius:12px;font-weight:800}
+input[type=text]{width:100%;padding:13px;border:2px solid #e3e8f1;border-radius:12px;font:inherit;margin:8px 0 12px}
+.flashcard{min-height:240px;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;cursor:pointer;background:linear-gradient(135deg,#e2f0ff,#ffe5ec,#e6f8d2);border-radius:22px;padding:24px}
+.flashcard .front{font-size:2rem;font-weight:900}.flashcard .back{display:none;font-size:1.2rem}.flashcard.revealed .front{font-size:1.3rem}.flashcard.revealed .back{display:block}.flashcard.revealed .hint{display:none}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:.85rem}
+@media(max-width:600px){header{padding:27px 16px}.section-title{display:block}.section-title p{margin-top:5px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">Deutsch · Grammatik & Wortschatz</div>
+ <h1>DER · DIE · DAS</h1>
+ <p>Интерактивный тренажёр: род существительных, окончания, время, погода, направления, цвета и другие слова с картинки. Сначала изучай примеры, затем проверяй себя.</p>
+</header>
+<nav id="nav">
+ <button class="active" data-page="theory">📚 Теория</button><button data-page="quiz">🎯 Тренировка</button><button data-page="flash">🃏 Карточки</button><button data-page="endings">🔎 Окончания</button><button data-page="vocab">🌦️ Темы и слова</button>
+</nav>
+<main>
+<section class="page active" id="theory">
+ <div class="section-title"><h2>1. Три грамматических рода</h2><p>Цвет карточки подсказывает род</p></div>
+ <div class="grid">
+  <article class="card gender masc"><span class="pill">🔵 MÄNNLICH</span><h3><strong class="blue">der</strong> — мужской род</h3><p>der Tisch — стол; der Mann — мужчина</p><div class="example">Der Hund ist klein.<span class="translation">Собака маленькая. (В немецком Hund — мужского рода.)</span></div><div class="example">Der Montag ist heute.<span class="translation">Сегодня понедельник.</span></div></article>
+  <article class="card gender fem"><span class="pill">🔴 WEIBLICH</span><h3><strong class="pink">die</strong> — женский род</h3><p>die Lampe — лампа; die Frau — женщина</p><div class="example">Die Blume ist schön.<span class="translation">Цветок красивый.</span></div><div class="example">Die Freiheit ist wichtig.<span class="translation">Свобода важна.</span></div></article>
+  <article class="card gender neut"><span class="pill">🟢 SÄCHLICH</span><h3><strong class="green">das</strong> — средний род</h3><p>das Kind — ребёнок; das Haus — дом</p><div class="example">Das Wetter ist gut.<span class="translation">Погода хорошая.</span></div><div class="example">Das Buch ist interessant.<span class="translation">Книга интересная.</span></div></article>
+ </div>
+ <div class="rule"><b>Важно: учи существительное вместе с артиклем!</b> Не просто Tisch, а <strong>der Tisch</strong>; не просто Lampe, а <strong>die Lampe</strong>. Окончания помогают предположить род, но бывают исключения.</div>
+ <div class="section-title"><h2>2. Неопределённый и отрицательный артикль</h2></div>
+ <div class="grid">
+  <article class="card"><h3>Определённый артикль</h3><p>der / die / das = этот, конкретный предмет</p><div class="example">Der Stuhl ist neu.<span class="translation">Этот стул новый.</span></div><div class="example">Die Tasche ist blau.<span class="translation">Эта сумка синяя.</span></div><div class="example">Das Auto ist schnell.<span class="translation">Эта машина быстрая.</span></div></article>
+  <article class="card"><h3>Неопределённый артикль</h3><p>ein (м. и ср. род), eine (ж. род)</p><div class="example">Das ist ein Tisch.<span class="translation">Это стол.</span></div><div class="example">Das ist eine Uhr.<span class="translation">Это часы.</span></div><div class="example">Das ist ein Buch.<span class="translation">Это книга.</span></div></article>
+  <article class="card"><h3>Отрицание kein</h3><p>kein (м. и ср. род), keine (ж. род и мн. число)</p><div class="example">Das ist kein Hund.<span class="translation">Это не собака.</span></div><div class="example">Das ist keine Katze.<span class="translation">Это не кошка.</span></div><div class="example">Das ist kein Kind.<span class="translation">Это не ребёнок.</span></div></article>
+ </div>
+ <div class="section-title"><h2>3. Как подсказать себе род?</h2><p>Смотри на типичные окончания</p></div>
+ <div class="grid">
+  <article class="card gender masc"><h3><strong class="blue">Часто der</strong></h3><p><b>-er:</b> der Lehrer (учитель), der Computer (компьютер)</p><p><b>-ling:</b> der Schmetterling (бабочка), der Frühling (весна)</p><p><b>-ismus:</b> der Kapitalismus (капитализм), der Optimismus (оптимизм)</p><p><b>-ant:</b> der Praktikant (практикант), der Elefant (слон)</p><p><b>-ent:</b> der Student (студент), der Patient (пациент)</p><p><b>-or:</b> der Motor (мотор), der Direktor (директор)</p><p><b>-ist:</b> der Journalist (журналист), der Optimist (оптимист)</p><p><b>-ich:</b> der Teppich (ковёр), der König (король)</p></article>
+  <article class="card gender fem"><h3><strong class="pink">Часто die</strong></h3><p><b>-e:</b> die Lampe (лампа), die Straße (улица)</p><p><b>-ei:</b> die Bäckerei (пекарня), die Polizei (полиция)</p><p><b>-schaft:</b> die Freundschaft (дружба), die Gesellschaft (общество)</p><p><b>-ik:</b> die Musik (музыка), die Mathematik (математика)</p><p><b>-in:</b> die Lehrerin (учительница), die Studentin (студентка)</p><p><b>-age/-ade:</b> die Garage (гараж), die Marmelade (джем)</p><p><b>-ur:</b> die Natur (природа), die Kultur (культура)</p><p><b>-anz/-enz:</b> die Distanz (дистанция), die Differenz (разница)</p><p><b>-ung/-keit/-heit/-ion/-tät:</b> die Heizung, die Möglichkeit, die Freiheit, die Nation, die Universität</p></article>
+  <article class="card gender neut"><h3><strong class="green">Часто das</strong></h3><p><b>-chen/-lein:</b> das Mädchen (девочка), das Büchlein (книжечка)</p><p><b>-ma:</b> das Thema (тема), das Klima (климат)</p><p><b>-icht:</b> das Gesicht (лицо), das Licht (свет)</p><p><b>-ment:</b> das Dokument (документ), das Argument (аргумент)</p><p><b>-tum:</b> das Christentum (христианство), das Eigentum (собственность)</p><p><b>-um:</b> das Museum (музей), das Datum (дата)</p><p><b>-ing:</b> das Training (тренировка), das Shopping (шопинг)</p><p><b>Глагол как существительное:</b> das Lesen (чтение), das Schwimmen (плавание)</p><p><b>Прилагательное как существительное:</b> das Gute (хорошее), das Schöne (прекрасное)</p></article>
+ </div>
+ <div class="rule"><b>Запомни исключения</b> die Butter (масло), das Fenster (окно), die Leiter (лестница / руководительница — значение важно), die Mutter (мать), der Apfel (яблоко), der Moment (момент), der Irrtum (ошибка), der Reichtum (богатство), der Baum (дерево). Окончание — подсказка, а не абсолютное правило.</div>
+</section>
+
+<section class="page" id="quiz">
+ <div class="section-title"><h2>🎯 Проверь себя</h2><p>Выбери правильный ответ</p></div>
+ <div class="quizbox"><div class="stats"><div class="stat">Вопрос: <span id="qnum">1</span>/<span id="qtotal">20</span></div><div class="stat">Верно: <span id="score">0</span></div></div><div class="progress"><span id="bar"></span></div><div class="small" id="category">Род существительного</div><div class="question" id="question">Какой артикль у слова ...?</div><div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite"></div><button class="primary" id="next" style="display:none">Следующий вопрос →</button><button class="secondary" id="restart">Начать заново</button></div>
+</section>
+
+<section class="page" id="flash">
+ <div class="section-title"><h2>🃏 Карточки для запоминания</h2><p>Нажми на карточку, чтобы увидеть перевод</p></div>
+ <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Показать перевод"><div class="front" id="flashfront">der Frühling</div><div class="back" id="flashback">весна</div><div class="hint small">Нажми, чтобы перевернуть</div></div>
+ <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0"><button class="secondary" id="prevcard">← Назад</button><button class="primary" id="flip">Показать перевод</button><button class="secondary" id="nextcard">Дальше →</button></div><p class="small" style="text-align:center">Карточка <span id="cardnum">1</span> из <span id="cardtotal"></span></p>
+</section>
+
+<section class="page" id="endings">
+ <div class="section-title"><h2>🔎 Тренажёр окончаний</h2><p>Выбери род по окончанию слова</p></div>
+ <div class="quizbox"><div class="question" id="endword">die Freundschaft</div><p class="small" id="endhint">Какое окончание помогает определить род?</p><div class="answers" id="endanswers"></div><div class="feedback" id="endfeedback"></div><button class="primary" id="endnext">Следующее слово →</button></div>
+ <div class="section-title"><h2>Суффиксы в примерах</h2></div><div class="grid">
+  <article class="card gender masc"><h3>Мужской род</h3><p>der Fahrer — водитель (<b>-er</b>)</p><p>der Lehrling — ученик (<b>-ling</b>)</p><p>der Tourismus — туризм (<b>-ismus</b>)</p><p>der Präsident — президент (<b>-ent</b>)</p></article>
+  <article class="card gender fem"><h3>Женский род</h3><p>die Zeitung — газета (<b>-ung</b>)</p><p>die Freundlichkeit — любезность (<b>-keit</b>)</p><p>die Möglichkeit — возможность (<b>-keit</b>)</p><p>die Information — информация (<b>-ion</b>)</p></article>
+  <article class="card gender neut"><h3>Средний род</h3><p>das Häuschen — домик (<b>-chen</b>)</p><p>das Fräulein — барышня (<b>-lein</b>)</p><p>das Instrument — инструмент (<b>-ment</b>)</p><p>das Eigentum — собственность (<b>-tum</b>)</p></article>
+ </div>
+</section>
+
+<section class="page" id="vocab">
+ <div class="section-title"><h2>🌦️ Слова по темам с примерами</h2><p>Все слова с изображения и контекст для запоминания</p></div>
+ <div class="grid">
+ <article class="card gender masc"><h3>📅 Дни недели — der Wochentag</h3><p>der Montag — понедельник</p><p>der Dienstag — вторник</p><p>der Mittwoch — среда</p><p>der Donnerstag — четверг</p><p>der Freitag — пятница</p><p>der Samstag / der Sonnabend — суббота</p><p>der Sonntag — воскресенье</p><div class="example">Am Montag lerne ich Deutsch.<span class="translation">В понедельник я учу немецкий.</span></div></article>
+ <article class="card gender masc"><h3>🗓️ Месяцы — der Monat</h3><p>der Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember</p><div class="example">Der Urlaub beginnt im Juli.<span class="translation">Отпуск начинается в июле.</span></div><p class="small">Названия месяцев пишутся с большой буквы и имеют мужской род.</p></article>
+ <article class="card gender fem"><h3>🍂 Времена года — die Jahreszeit</h3><p>der Frühling — весна; der Sommer — лето; der Herbst — осень; der Winter — зима</p><div class="example">Im Winter schneit es oft.<span class="translation">Зимой часто идёт снег.</span></div><p class="small">Общее слово Jahreszeit — женского рода, но названия сезонов — мужского.</p></article>
+ <article class="card gender masc"><h3>⏰ Время суток — die Tageszeit</h3><p>der Morgen — утро; der Mittag — полдень; der Nachmittag — время после полудня; der Abend — вечер; die Nacht — ночь</p><div class="example">Am Abend lese ich ein Buch.<span class="translation">Вечером я читаю книгу.</span></div><p class="small">Исключение в ряду: die Nacht — женский род.</p></article>
+ <article class="card gender neut"><h3>🌤️ Погода — das Wetter</h3><p>der Regen — дождь; der Sturm — шторм; der Nebel — туман; der Wind — ветер; der Schnee — снег</p><p>die Wolke — облако; das Eis — лёд; die Hitze — жара; die Kälte — холод</p><div class="example">Heute gibt es starken Wind und Regen.<span class="translation">Сегодня сильный ветер и дождь.</span></div><div class="example">Die Kälte macht mir nichts aus.<span class="translation">Холод меня не беспокоит.</span></div></article>
+ <article class="card gender masc"><h3>🧭 Стороны света — die Himmelsrichtung</h3><p>der Norden — север; der Süden — юг; der Osten — восток; der Westen — запад</p><div class="example">Hamburg liegt im Norden Deutschlands.<span class="translation">Гамбург находится на севере Германии.</span></div></article>
+ <article class="card gender masc"><h3>💶 Валюта — die Währung</h3><p>der Euro — евро; der Real — реал; der Rubel — рубль; der Dollar — доллар; der Peso — песо</p><p>die Rupie — рупия; das Pfund — фунт</p><div class="example">Das kostet zehn Euro.<span class="translation">Это стоит десять евро.</span></div></article>
+ <article class="card gender masc"><h3>🥤 Напитки — der Alkohol</h3><p>der Wein — вино; der Sekt — игристое вино; der Schnaps — крепкий алкогольный напиток; das Bier — пиво</p><div class="example">Das Bier ist kalt.<span class="translation">Пиво холодное.</span></div><p class="small">Это лексика для распознавания рода и перевода.</p></article>
+ <article class="card gender fem"><h3>🔢 Числа — die Zahl</h3><p>die Eins — один; die Zwei — два; die Drei — три; die Vier — четыре; die Fünf — пять</p><div class="example">Ich habe eine Eins bekommen.<span class="translation">Я получил(а) оценку «отлично» (единицу).</span></div><p class="small">Когда числительное используется как существительное, оно пишется с большой буквы.</p></article>
+ <article class="card gender masc"><h3>🌳 Дерево и растение — der Baum und die Pflanze</h3><p>die Palme — пальма; die Linde — липа; die Birke — берёза; die Buche — бук; die Rose — роза; die Orchidee — орхидея</p><div class="example">Die Rose ist rot.<span class="translation">Роза красная.</span></div></article>
+ <article class="card gender fem"><h3>🍎 Фрукты — die Obstsorte</h3><p>der Apfel — яблоко; die Banane — банан; die Traube — виноградина / виноград; die Kiwi — киви</p><div class="example">Der Apfel ist süß und die Banane ist gelb.<span class="translation">Яблоко сладкое, а банан жёлтый.</span></div></article>
+ <article class="card gender green neut"><h3>🎨 Цвета — die Farbe</h3><p>lila — сиреневый; orange — оранжевый; grün — зелёный; blau — синий; rot — красный; gelb — жёлтый</p><div class="example">Das Auto ist blau. Die Blume ist rot.<span class="translation">Машина синяя. Цветок красный.</span></div><p class="small">Цвет как прилагательное обычно пишется со строчной буквы.</p></article>
+ <article class="card gender neut"><h3>🔤 Буквы — der Buchstabe</h3><p>der Buchstabe — буква; das A, das B, das C — буква A, B, C (когда буква называется как существительное)</p><div class="example">Das Wort „Apfel“ beginnt mit A.<span class="translation">Слово Apfel начинается с A.</span></div></article>
+ <article class="card gender fem"><h3>📝 Номинализация — die Nominalisierung</h3><p>Глагол → существительное: laufen → das Laufen; sprechen → das Sprechen.</p><p>Прилагательное → существительное: gut → das Gute; schön → das Schöne.</p><div class="example">Das Lesen macht Spaß.<span class="translation">Чтение приносит удовольствие.</span></div><p class="small">Субстантивированные инфинитивы обычно имеют das и пишутся с большой буквы.</p></article>
+ <article class="card gender fem"><h3>🍰 Дроби — die Bruchzahl</h3><p>das Viertel (1/4) — четверть; das Drittel (1/3) — треть</p><div class="example">Ein Viertel der Pizza ist noch da.<span class="translation">Четверть пиццы ещё осталась.</span></div></article>
+ <article class="card gender masc"><h3>🪵 Материалы — der Stoff</h3><p>das Holz — дерево / древесина; das Glas — стекло; das Gold — золото; das Silber — серебро; das Plastik — пластик</p><div class="example">Der Tisch ist aus Holz.<span class="translation">Стол сделан из дерева.</span></div></article>
+ </div>
+ <div class="section-title"><h2>4. Существительные, образованные от глаголов и прилагательных</h2></div>
+ <div class="grid">
+  <article class="card gender neut"><h3>Инфинитив как существительное</h3><p>lernen → das Lernen (учёба)</p><p>essen → das Essen (еда / приём пищи)</p><p>schwimmen → das Schwimmen (плавание)</p><div class="example">Das Lernen braucht Zeit.<span class="translation">Учёба требует времени.</span></div></article>
+  <article class="card gender neut"><h3>Прилагательное как существительное</h3><p>gut → das Gute (хорошее)</p><p>schön → das Schöne (прекрасное)</p><div class="example">Das Gute an der Reise ist das Wetter.<span class="translation">Хорошее в поездке — это погода.</span></div></article>
+  <article class="card"><h3>Проверка понимания</h3><p>Увидел(а) существительное с большой буквы — это ещё не значит, что оно изначально было существительным. В немецком все существительные пишутся с большой буквы, а глаголы и прилагательные могут субстантивироваться.</p><div class="example">Ich lese gern. → Das Lesen ist mein Hobby.<span class="translation">Я люблю читать. → Чтение — моё хобби.</span></div></article>
+ </div>
+</section>
+</main><footer>Deutsch lernen · Повторяй слова вместе с артиклями: der, die или das.</footer>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');pages.forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));window.scrollTo({top:0,behavior:'smooth'});}));
+const qs=[
+['der Montag','der','Дни недели обычно мужского рода.'],['die Jahreszeit','die','Сложное слово Jahreszeit имеет род последнего компонента: die Zeit.'],['das Wetter','das','Запомни: das Wetter.'],['der Frühling','der','Названия сезонов обычно мужского рода.'],['die Nacht','die','die Nacht — исключение среди названий времени суток.'],['der Regen','der','der Regen — дождь.'],['die Wolke','die','Окончание -e часто встречается у слов женского рода.'],['das Eis','das','das Eis — лёд / мороженое.'],['der Norden','der','der Norden — север.'],['das Pfund','das','das Pfund — фунт.'],['die Freiheit','die','Окончание -heit указывает на женский род.'],['der Student','der','Окончание -ent часто соответствует мужскому роду.'],['die Musik','die','Окончание -ik обычно женского рода.'],['das Mädchen','das','Слова на -chen всегда среднего рода.'],['das Dokument','das','Окончание -ment обычно среднего рода.'],['die Universität','die','Окончание -tät обычно женского рода.'],['der Schmetterling','der','Окончание -ling обычно мужского рода.'],['das Training','das','Слова на -ing часто среднего рода.'],['die Banane','die','die Banane — банан.'],['das Holz','das','Материал Holz — среднего рода.'],['der Apfel','der','der Apfel — яблоко; это нужно запомнить.'],['die Rose','die','die Rose — роза.'],['das Lesen','das','Субстантивированный инфинитив обычно среднего рода.'],['der Motor','der','Окончание -or часто мужского рода.'],['die Bäckerei','die','Окончание -ei обычно женского рода.'],['das Klima','das','Окончание -ma часто среднего рода.'],['die Differenz','die','Окончание -enz обычно женского рода.'],['der Baum','der','der Baum — дерево.'],['das Glas','das','das Glas — стекло / стакан.'],['die Zahl','die','die Zahl — число.']
+];
+let order=[],idx=0,score=0,locked=false;const $=id=>document.getElementById(id);
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function startQuiz(){order=shuffle(qs).slice(0,20);idx=0;score=0;locked=false;$('score').textContent=score;$('qtotal').textContent=order.length;$('next').style.display='none';renderQ()}
+function renderQ(){locked=false;let q=order[idx];$('qnum').textContent=idx+1;$('bar').style.width=(idx/order.length*100)+'%';$('category').textContent='Выбери правильный артикль';$('question').textContent='Какой артикль у слова «'+q[0].replace(/^(der|die|das) /,'')+'»?';$('feedback').textContent='';$('answers').innerHTML='';['der','die','das'].forEach(a=>{let b=document.createElement('button');b.className='answer';b.textContent=a;b.onclick=()=>answerQ(b,a,q);$('answers').appendChild(b)});$('next').style.display='none'}
+function answerQ(btn,a,q){if(locked)return;locked=true;let correct=a===q[1];if(correct)score++;$('score').textContent=score;[...$('answers').children].forEach(b=>{if(b.textContent===q[1])b.classList.add('correct');else if(b===btn)b.classList.add('wrong');b.disabled=true});$('feedback').textContent=(correct?'Richtig! ✓ ':'Noch nicht. ') + q[2];$('next').style.display='inline-block';$('next').textContent=idx===order.length-1?'Результат →':'Следующий вопрос →';$('bar').style.width=((idx+1)/order.length*100)+'%'}
+$('next').onclick=()=>{if(idx<order.length-1){idx++;renderQ()}else{$('question').textContent='Готово! Результат: '+score+' из '+order.length;$('category').textContent=score>=16?'Отлично! Продолжай повторять.':'Хорошая практика — попробуй ещё раз.';$('answers').innerHTML='';$('feedback').textContent='Повторяй артикль вместе со словом, а не отдельно.';$('next').style.display='none';$('bar').style.width='100%'}};
+$('restart').onclick=startQuiz;startQuiz();
+const cards=[
+['der Wochentag','день недели'],['der Monat','месяц'],['die Jahreszeit','время года'],['der Frühling','весна'],['der Sommer','лето'],['der Herbst','осень'],['der Winter','зима'],['der Morgen','утро'],['der Mittag','полдень'],['der Nachmittag','время после полудня'],['der Abend','вечер'],['die Nacht','ночь'],['das Wetter','погода'],['der Regen','дождь'],['der Sturm','шторм'],['der Nebel','туман'],['der Wind','ветер'],['der Schnee','снег'],['die Wolke','облако'],['das Eis','лёд'],['die Hitze','жара'],['die Kälte','холод'],['der Norden','север'],['der Süden','юг'],['der Osten','восток'],['der Westen','запад'],['der Euro','евро'],['der Rubel','рубль'],['die Rupie','рупия'],['das Pfund','фунт'],['der Wein','вино'],['das Bier','пиво'],['die Zahl','число'],['der Baum','дерево'],['die Pflanze','растение'],['die Rose','роза'],['der Apfel','яблоко'],['die Banane','банан'],['die Traube','виноград'],['die Kiwi','киви'],['die Farbe','цвет'],['der Buchstabe','буква'],['das Viertel','четверть'],['das Drittel','треть'],['das Holz','древесина'],['das Glas','стекло'],['das Gold','золото'],['das Silber','серебро'],['das Plastik','пластик'],['die Freundschaft','дружба'],['die Universität','университет'],['das Mädchen','девочка'],['das Dokument','документ'],['das Training','тренировка'],['der Lehrer','учитель'],['die Lehrerin','учительница']
+];let ci=0;function showCard(){ $('flashfront').textContent=cards[ci][0];$('flashback').textContent=cards[ci][1];$('flashcard').classList.remove('revealed');$('cardnum').textContent=ci+1;$('cardtotal').textContent=cards.length;$('flip').textContent='Показать перевод'}
+function flipCard(){$('flashcard').classList.toggle('revealed');$('flip').textContent=$('flashcard').classList.contains('revealed')?'Скрыть перевод':'Показать перевод'}
+$('flashcard').onclick=flipCard;$('flashcard').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flipCard()}};$('flip').onclick=flipCard;$('prevcard').onclick=()=>{ci=(ci-1+cards.length)%cards.length;showCard()};$('nextcard').onclick=()=>{ci=(ci+1)%cards.length;showCard()};showCard();
+const endqs=[['Freundschaft','-schaft','die','-schaft обычно женского рода'],['Mädchen','-chen','das','Слова на -chen всегда среднего рода'],['Student','-ent','der','-ent часто мужского рода'],['Universität','-tät','die','-tät — женский род'],['Dokument','-ment','das','-ment обычно среднего рода'],['Frühling','-ling','der','-ling обычно мужского рода'],['Freiheit','-heit','die','-heit — женский род'],['Mathematik','-ik','die','-ik обычно женского рода'],['Training','-ing','das','-ing часто среднего рода'],['Optimismus','-ismus','der','-ismus — мужской род'],['Bäckerei','-ei','die','-ei обычно женского рода'],['Motor','-or','der','-or часто мужской род'],['Möglichkeit','-keit','die','-keit — женский род'],['Gesicht','-icht','das','-icht часто среднего рода'],['Garage','-age','die','-age часто женского рода'],['Christentum','-tum','das','-tum часто среднего рода'],['Praktikant','-ant','der','-ant часто мужского рода'],['Information','-ion','die','-ion обычно женского рода'],['Kultur','-ur','die','-ur обычно женского рода'],['Klima','-ma','das','-ma часто среднего рода']];
+let ei=0,elock=false;function renderEnd(){elock=false;let q=endqs[ei];$('endword').textContent='…'+q[1]+' — '+q[0];$('endhint').textContent='Какой род чаще всего имеет это окончание?';$('endfeedback').textContent='';$('endanswers').innerHTML='';['der','die','das'].forEach(a=>{let b=document.createElement('button');b.className='answer';b.textContent=a;b.onclick=()=>{if(elock)return;elock=true;[...$('endanswers').children].forEach(x=>{if(x.textContent===q[2])x.classList.add('correct');else if(x===b)x.classList.add('wrong');x.disabled=true});$('endfeedback').textContent=(a===q[2]?'Richtig! ✓ ':'Правильный ответ: '+q[2]+'. ')+q[3]};$('endanswers').appendChild(b)})}
+$('endnext').onclick=()=>{ei=(ei+1)%endqs.length;renderEnd()};renderEnd();
+</script>
+</body>
+</html>
